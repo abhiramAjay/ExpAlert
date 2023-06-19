@@ -1,6 +1,5 @@
 
 import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -12,10 +11,9 @@ import 'calender.dart';
 
 
 class QRExample extends StatelessWidget {
-  final String? data;
+  var data;
 
   QRExample({ required this.data});
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +30,13 @@ class QRExample extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // addevent();
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return Calendar1(title: "CALENDaR");}));
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return Calendar1(title: "CALENDAR",qrCodeResult:this.data);}));
               }
 
               ,
-              child: Text('Click Me'),
+              child: Text('Add to Calendar'),
             ),
+
           ],
         ),
       ),

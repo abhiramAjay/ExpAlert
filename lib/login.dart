@@ -1,6 +1,4 @@
-import 'package:exp_alert/auth_services.dart';
 import 'package:flutter/material.dart';
-import 'calender.dart';
 import 'scanner.dart';
 class LoginPage extends StatelessWidget {
   @override

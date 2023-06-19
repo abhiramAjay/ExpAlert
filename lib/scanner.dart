@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:exp_alert/result.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +17,6 @@ class _QRViewExampleState extends State<QRViewExample> {
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
-  // In order to get hot reload to work we need to pause the camera if the platform
-  // is android, or resume the camera if the platform is iOS.
   @override
   void reassemble() {
     super.reassemble();
@@ -28,7 +25,6 @@ class _QRViewExampleState extends State<QRViewExample> {
     }
     controller!.resumeCamera();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,7 +144,7 @@ class _QRViewExampleState extends State<QRViewExample> {
 
       if (scanData.format == BarcodeFormat.qrcode && scanData.code != null) {
         controller.pauseCamera();
-        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return QRExample(data: scanData.code);}));
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return QRExample(data: scanData.code ?? "");}));
       }
     });
   }
