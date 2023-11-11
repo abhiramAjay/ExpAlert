@@ -19,21 +19,29 @@ class QRExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(200, 87, 188, 54),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/img/theme.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: Text(data!),
+              child: Text(data!,style: TextStyle(
+                color: Color.fromRGBO(255, 255, 255, 1), // Change this color to your desired color
+                fontSize: 20,
+              ),),
             ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // addevent();
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return Calendar1(title: "CALENDAR",qrCodeResult:this.data);}));
-              }
-
-              ,
+              },  style: ElevatedButton.styleFrom(
+              backgroundColor: Color.fromRGBO(109,144,167,1), // Change this color to your desired color
+            ),
               child: Text('Add to Calendar'),
             ),
 

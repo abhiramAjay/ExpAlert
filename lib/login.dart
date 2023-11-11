@@ -1,3 +1,4 @@
+import 'package:exp_alert/scanorcal.dart';
 import 'package:flutter/material.dart';
 import 'scanner.dart';
 class LoginPage extends StatelessWidget {
@@ -6,7 +7,12 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       
       body: Container(
-        color: Color.fromARGB(200,87,188,54),
+        decoration: BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage('assets/img/theme.jpg'),
+    fit: BoxFit.cover,
+    ),
+        ),
         padding: EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -26,8 +32,11 @@ class LoginPage extends StatelessWidget {
             SizedBox(height: 15.0),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return QRViewExample();}));
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return centerpage();}));
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(109,144,167,1), // Change this color to your desired color
+              ),
               child: Text('Login'),
             ),
             // ElevatedButton(

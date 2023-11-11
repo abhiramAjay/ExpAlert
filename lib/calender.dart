@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'dart:convert';
 
+import 'listview.dart';
+
 class Calendar1 extends StatefulWidget {
   String qrCodeResult;
   Calendar1({super.key, required this.title,required this.qrCodeResult});
@@ -11,15 +13,19 @@ class Calendar1 extends StatefulWidget {
   @override
   State<Calendar1> createState() => EventCal();
 }
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatelessWidget
+
+
+{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Calendar"),
+        backgroundColor: Color.fromRGBO(30,45,62,1)
       ),
 
-      );
+    );
   }
 }
 class EventCal extends State<Calendar1> {
@@ -48,25 +54,55 @@ class EventCal extends State<Calendar1> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Calendar"),
+          backgroundColor: Color.fromRGBO(30,45,62,1)
       ),
-      body:SfCalendar(
+      body:Stack(
+        children: [
+          SfCalendar(
 
-        view: CalendarView.timelineWeek,
-        cellBorderColor: Colors.blueAccent,
-        backgroundColor: Colors.white,
 
-        //initialDisplayDate: DateTime(2021, 03, 01, 08, 30),
-        //initialSelectedDate: DateTime(2021, 03, 01, 08, 30),
-        dataSource: MeetingDataSource(getAppointments(jsonData)),
+            view: CalendarView.timelineWeek,
+            cellBorderColor: Colors.greenAccent,
+            backgroundColor: Colors.white,
 
+            //initialDisplayDate: DateTime(2021, 03, 01, 08, 30),
+            //initialSelectedDate: DateTime(2021, 03, 01, 08, 30),
+            dataSource: MeetingDataSource(getAppointments(jsonData)),
+
+          ),
+          Positioned(
+            bottom: 20,
+            right: 20,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return List_items();}));
+              },
+              style: ElevatedButton.styleFrom(
+                shape: CircleBorder(), backgroundColor: Color.fromRGBO(30,45,62,1),
+                padding: EdgeInsets.all(20), // Change this color to your desired color
+              ),
+              child: Icon(
+                Icons.storage,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ) ,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) { return List_items();}));
+          },child: Icon(Icons.add),
+        backgroundColor: Color.fromRGBO(109,144,167,1),
+
+      ),
     );
   }
 }
 
 List<Appointment> getAppointments(Map<String, dynamic> jsonData) {
   List<Appointment> meetings = <Appointment>[];
-   String dateStringstart = '2023-06-19 11:30:00';
+  String dateStringstart = '2023-06-19 11:30:00';
   // DateTime startTime = DateTime.parse(dateStringstart);
   // String dateStringend = '2023-07-21 10:30:00';
   // DateTime endTime = startTime.add(const Duration(hours: 2));
@@ -84,7 +120,7 @@ List<Appointment> getAppointments(Map<String, dynamic> jsonData) {
         endTime: starttime.add(const Duration(hours: 10)),
         subject: 'Your ${jsonData['result'][i]['product']} Is Going to Expire In 30 days',
 
-        color: Colors.blue,
+        color: Color.fromRGBO(30,45,62,1),
         //recurrenceRule: 'FREQ=DAILY;COUNT=10',
         isAllDay: false));
   }
